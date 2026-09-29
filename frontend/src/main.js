@@ -1,4 +1,6 @@
+import "./styles/base.css";
 import { getSetting, getPages } from "./api";
+import { hero } from "./blocks/hero/hero";
 
 const app = document.querySelector("#app");
 
@@ -10,8 +12,8 @@ async function start() {
     ]);
 
     document.title = `${page.title} - ${settings.siteName}`;
-
-    console.log(settings, page);
+    const heroBlock = page.blocks.find((block) => block.type === "hero");
+    app.innerHTML = hero(heroBlock);
   } catch (error) {
     app.textContent = `Something went wrong: ${error.message}`;
   }
